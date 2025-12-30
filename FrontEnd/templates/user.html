@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Dashboard — Profile</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/user.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">
+      <h2>HealthGuard AI</h2>
+      <p>Welcome back, <span id="username">User</span></p>
+    </div>
+
+    <ul class="menu">
+      <li>
+        <a class="active" href="#">
+          <i class="fas fa-user"></i>
+          Profile
+        </a>
+      </li>
+    </ul>
+
+    <div class="user-info">
+      <div class="avatar"><i class="fas fa-user"></i></div>
+      <p id="sidebarName">User</p>
+      <button id="logoutBtn" class="logout-btn">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main-content">
+    <!-- Page header with top-right theme toggle -->
+    <header class="page-header">
+      <div class="page-title">
+        <h1>Profile & Claims</h1>
+        <p>Manage insurance details and view claim history</p>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <img id="theme-icon"
+             src="{{ url_for('static', filename='assets/images/sun.png') }}"
+             alt="Switch theme" />
+      </button>
+    </header>
+
+    <!-- Profile Card -->
+    <section id="profileSection" class="profile-section">
+      <div class="profile-card">
+        <h2 id="fullName" class="profile-name">—</h2>
+        <p id="patientId" class="profile-id">Patient ID: —</p>
+
+        <div class="profile-grid layout">
+          <div class="profile-item age">
+            <label>AGE</label>
+            <span id="age">-</span>
+          </div>
+          <div class="profile-item gender">
+            <label>GENDER</label>
+            <span id="gender">-</span>
+          </div>
+          <div class="profile-item phone">
+            <label>PHONE</label>
+            <span id="phone">-</span>
+          </div>
+          <div class="profile-item insurance">
+            <label>INSURANCE ID</label>
+            <span id="insuranceId">-</span>
+          </div>
+          <div class="profile-item address">
+            <label>ADDRESS</label>
+            <span id="address">-</span>
+          </div>
+          <div class="profile-item medical">
+            <label>MEDICAL HISTORY</label>
+            <span id="medicalHistory">-</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Claims (kept inside Profile page) -->
+    <section id="claimsSection" class="claims-section">
+      <h2>My Claims</h2>
+      <table id="claimsTable">
+        <thead>
+          <tr>
+            <th>Claim ID</th>
+            <th>Provider ID</th>
+            <th>Amount</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody><!-- Filled by JS --></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/user.js') }}"></script>
+</body>
+</html>

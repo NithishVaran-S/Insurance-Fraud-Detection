@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Detection Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/audit.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                HealthGuard AI
+            </div>
+            <div class="nav-right">
+                <div class="user-greeting">Welcome, <span>Fraud Analyst</span></div>
+                <button class="theme-toggle" id="themeToggle">
+                    <img id="theme-icon" src="static/assets/images/sun.png" alt="Theme" width="24" height="24">
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-tabs">
+                <button class="tab-btn active" data-tab="dashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Dashboard
+                </button>
+                <button class="tab-btn" data-tab="claims">
+                    <i class="fas fa-list-alt"></i>
+                    All Claims
+                </button>
+            </div>
+            
+            <div class="sidebar-profile">
+                <div class="profile-container">
+                    <div class="profile-avatar">FA</div>
+                    <div class="profile-info">
+                        <h3>Fraud Analyst</h3>
+                        <div class="profile-email">analyst@company.com</div>
+                    </div>
+                </div>
+                <button class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="tab-content active">
+                <div class="section-header">
+                    <h2>Fraud Detection Dashboard</h2>
+                </div>
+
+                <!-- KPI Grid -->
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="kpi-icon danger">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="kpi-content">
+                            <h3 id="fraudDetectedCount">0</h3>
+                            <p>Fraud Cases Detected</p>
+                            <div class="kpi-trend positive">↑ 12% vs last month</div>
+                        </div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-icon success">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="kpi-content">
+                            <h3 id="recoveryAmount">$0</h3>
+                            <p>Amount Recovered</p>
+                            <div class="kpi-trend positive">↑ 8% vs last month</div>
+                        </div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-icon primary">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="kpi-content">
+                            <h3 id="roiValue">0x</h3>
+                            <p>Return on Investment</p>
+                            <div class="kpi-trend positive">↑ 15% vs last month</div>
+                        </div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-icon warning">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <div class="kpi-content">
+                            <h3 id="detectionRate">0%</h3>
+                            <p>Detection Accuracy</p>
+                            <div class="kpi-trend positive">↑ 3% vs last month</div>
+                        </div>
+                    </div>
+                </div>
+
+                
+            <!-- Enhanced Charts Grid -->
+            <div class="charts-main-grid">
+                <!-- ROI Over Time -->
+                <div class="chart-container large">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-chart-line"></i> ROI Over Time</h3>
+                        <div class="chart-controls">
+                            <span class="chart-status live">LIVE</span>
+                            <button class="chart-toggle active">6 Months</button>
+                        </div>
+                    </div>
+                    <div class="chart-canvas-wrapper">
+                        <canvas id="roiChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Fraud Predictions Breakdown -->
+                <div class="chart-container large">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-chart-pie"></i> Fraud Predictions</h3>
+                        <div class="chart-controls">
+                            <span class="chart-status live">LIVE</span>
+                        </div>
+                    </div>
+                    <div class="chart-canvas-wrapper">
+                        <canvas id="predictionsChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Detection Accuracy Trend -->
+                <div class="chart-container large">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-bullseye"></i> Detection Accuracy</h3>
+                    </div>
+                    <div class="chart-canvas-wrapper">
+                        <canvas id="accuracyTrendChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Provider Risk Analysis -->
+                <div class="chart-container large">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-hospital"></i> Provider Analysis</h3>
+                    </div>
+                    <div class="chart-canvas-wrapper">
+                        <canvas id="providerAnalysisChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Fraud Risk Levels -->
+                <div class="chart-container large">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-chart-bar"></i> Risk Levels</h3>
+                    </div>
+                    <div class="chart-canvas-wrapper">
+                        <canvas id="riskLevelsChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Amount Distribution -->
+                <div class="chart-container large">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-dollar-sign"></i> Claim Amounts</h3>
+                    </div>
+                    <div class="chart-canvas-wrapper">
+                        <canvas id="amountDistributionChart"></canvas>
+                    </div>
+                </div>
+
+                
+            </div>
+
+                
+            </section>
+
+            <!-- Claims Section -->
+            <section id="claims-section" class="tab-content">
+                <div class="section-header">
+                    <h2>All Claims</h2>
+                    <p>Real-time monitoring of insurance claims with AI-powered fraud detection.</p>
+                </div>
+
+                <!-- Claims Filters -->
+                <div class="claims-filters">
+                    <select id="statusFilter" class="filter-select">
+                        <option value="all">All</option>
+                        <option value="fraud">Fraud</option>
+                        <option value="suspicious">Suspicious</option>
+                        <option value="non-fraud">Non-Fraud</option>
+                    </select>
+
+                    
+                    <select id="riskFilter" class="filter-select">
+                        <option value="all">All Risk Levels</option>
+                        <option value="high">High Risk</option>
+                        <option value="medium">Medium Risk</option>
+                        <option value="low">Low Risk</option>
+                    </select>
+                    
+                    <input type="text" id="claimsSearchInput" class="filter-select" placeholder="Search claims, patients, providers..." style="min-width: 300px;">
+                    
+                    <button id="refreshBtn" class="filter-select refresh-btn">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                    
+                    <button id="exportCsvBtn" class="filter-select btn-export">
+                        <i class="fas fa-download"></i> Export CSV
+                    </button>
+                </div>
+
+                <!-- Claims Table -->
+                <div class="claims-container">
+                    <div class="claim-card">
+                        <div class="table-wrapper">
+                            <table class="audit-table" id="auditTable">
+                                <thead>
+                                    <tr>
+                                        <th>Claim ID</th>
+                                        <th>Patient ID</th>
+                                        <th>Provider ID</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                        <th>Fraud Risk</th>
+                                        <th>Reason</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="8" class="table-help">Loading claims data...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analytics Section -->
+            <section id="analytics-section" class="tab-content">
+                <div class="section-header">
+                    <h2>Analytics</h2>
+                    <p>Deep dive into fraud patterns and trends.</p>
+                </div>
+                <div style="text-align: center; padding: 4rem; color: var(--text-secondary);">
+                    <i class="fas fa-chart-bar" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+                    <h3>Advanced Analytics Coming Soon</h3>
+                    <p>Detailed fraud pattern analysis and predictive insights will be available here.</p>
+                </div>
+            </section>
+
+            <!-- Reports Section -->
+            <section id="reports-section" class="tab-content">
+                <div class="section-header">
+                    <h2>Reports</h2>
+                    <p>Generate and download fraud detection reports.</p>
+                </div>
+                <div style="text-align: center; padding: 4rem; color: var(--text-secondary);">
+                    <i class="fas fa-file-alt" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+                    <h3>Report Generation Coming Soon</h3>
+                    <p>Comprehensive fraud detection reports and audit trails will be available here.</p>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings-section" class="tab-content">
+                <div class="section-header">
+                    <h2>Settings</h2>
+                    <p>Configure fraud detection parameters and system settings.</p>
+                </div>
+                <div style="text-align: center; padding: 4rem; color: var(--text-secondary);">
+                    <i class="fas fa-cog" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+                    <h3>Settings Panel Coming Soon</h3>
+                    <p>Fraud detection thresholds and system configuration options will be available here.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Claim Review Modal -->
+    <div id="claimReviewModal" class="modal-overlay" aria-hidden="true">
+        <div class="modal-content">
+            <button class="modal-close" id="closeReviewModal">×</button>
+            <h2>Claim Review</h2>
+            
+            <!-- Claim Details Grid -->
+            <div class="claim-details-grid">
+                <div class="claim-card">
+                    <strong>Claim ID</strong>
+                    <span id="modalClaimId">-</span>
+                </div>
+                <div class="claim-card">
+                    <strong>Patient ID</strong>
+                    <span id="modalPatientId">-</span>
+                </div>
+                <div class="claim-card">
+                    <strong>Provider ID</strong>
+                    <span id="modalProviderId">-</span>
+                </div>
+                <div class="claim-card">
+                    <strong>Amount</strong>
+                    <span id="modalAmount">-</span>
+                </div>
+            </div>
+
+            <!-- Patient Information -->
+            <div class="review-section">
+                <h3>Patient Information</h3>
+                <div class="patient-grid">
+                    <div>
+                        <strong>Patient Name</strong>
+                        <span id="modalPatientName">-</span>
+                    </div>
+                    <div>
+                        <strong>Age</strong>
+                        <span id="modalPatientAge">-</span>
+                    </div>
+                    <div>
+                        <strong>Insurance Policy</strong>
+                        <span id="modalPatientInsurance">-</span>
+                    </div>
+                    <div>
+                        <strong>Service Type</strong>
+                        <span id="modalServiceType">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Claim Information with Risk Display -->
+            <div class="claim-risk-row">
+                <div class="review-section">
+                    <h3>Claim Information</h3>
+                    <div class="claim-details-grid">
+                        <div class="claim-card">
+                            <strong>Status</strong>
+                            <span id="modalStatus">-</span>
+                        </div>
+                        <div class="claim-card">
+                            <strong>Fraud Risk</strong>
+                            <span id="modalRisk">-</span>
+                        </div>
+                    </div>
+                    
+                    <div class="review-section">
+                        <h3>Detection Reason</h3>
+                        <div class="claim-card" style="grid-column: span 2;">
+                            <p id="modalReason" style="white-space: pre-wrap; line-height: 1.5;">-</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Risk Score Circle -->
+                <div class="risk-box">
+                    <div class="risk-title">Risk Score</div>
+                    <div class="risk-score">0%</div>
+                    <div class="risk-label">Unknown</div>
+                </div>
+            </div>
+
+            <!-- Review Actions -->
+            <div class="review-flex">
+                <div class="review-notes">
+                    <h3>Review Notes</h3>
+                    <textarea id="reviewNotes" placeholder="Add your review notes here..."></textarea>
+                </div>
+            </div>
+
+            <!-- Save Button -->
+            <div class="save-section">
+                <button id="saveReviewBtn">
+                    <i class="fas fa-save"></i> Save Review
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p>Processing your request...</p>
+    </div>
+
+    <!-- Last Update Time -->
+    <div style="position: fixed; bottom: 10px; right: 10px; font-size: 0.8rem; color: var(--text-secondary); opacity: 0.7;">
+        Last updated: <span id="lastDashboardUpdate">Never</span>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/audit.js') }}"></script>
+</body>
+</html>

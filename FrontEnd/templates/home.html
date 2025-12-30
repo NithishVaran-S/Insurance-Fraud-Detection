@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthGuard AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="enhanced-particles">
+        <div class="bg-particle"></div>
+        <div class="bg-particle"></div>
+        <div class="bg-particle"></div>
+        <div class="bg-particle"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" >
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="#hero" class="nav-item">HealthGuard AI</a>
+                <a href="#about" class="nav-item">About Us</a>
+                <a href="#team" class="nav-item">Support</a>
+            </div>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <img id="theme-icon" src="{{ url_for('static', filename='assests/images/medical-shield') }}" alt="Toggle Theme">
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+        <div class="bg-animation">
+            <div class="wave wave1"></div>
+            <div class="wave wave2"></div>
+            <div class="wave wave3"></div>
+        </div>
+        
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-stats-small">
+                    <div class="stat-highlight">90%+ Accuracy</div>
+                    <div class="stat-highlight">Real-time Processing</div>
+                    <div class="stat-highlight">Audit Compliant</div>
+                </div>
+                
+                <h5 class="hero-title">
+                    Advanced <span class="highlight-text">AI-Powered</span><br>
+                    Medicare Fraud Detection
+                </h5>
+                
+
+                <div class="hero-features">
+                    <div class="feature-point">
+                        <span class="feature-icon">ML</span>
+                        <span>Machine Learning Analytics</span>
+                    </div>
+                    <div class="feature-point">
+                        <span class="feature-icon">RT</span>
+                        <span>Real-time Processing</span>
+                    </div>
+                    
+                </div>
+
+                <button class="get-started-btn" id="getStartedBtn">
+                    Start Fraud Detection
+                    <span class="btn-arrow">→</span>
+                </button>
+
+                <div class="trust-indicators">
+                    <p>AI based fraud detection and Prevention to handle Part-A and Part-B claims</p>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="medical-icon-container">
+                    <div class="pulsing-ring"></div>
+                    <div class="pulsing-ring delay-1"></div>
+                    <div class="pulsing-ring delay-2"></div>
+                    
+                    <div class="medical-icon">
+                        <img src="static/assets/images/medical-shield.png" alt="Medical Shield Icon" class="medical-image">
+                        <div class="scan-line"></div>
+                    </div>
+
+                    <div class="floating-data">
+                        <div class="data-point data-1">AI-Powered</div>
+                        <div class="data-point data-2">99.9%</div>
+                        <div class="data-point data-3">$2.4M</div>
+                        <div class="data-point data-4">95%</div>
+                    </div>
+                </div>
+
+                <div class="floating-particles">
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <h2 class="section-title">Advanced Detection Technology</h2>
+            <div class="features-grid">
+
+                <div class="feature-card">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200&q=80" 
+                         alt="Data Visualization" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem;">
+                    <h3>Comprehensive Reporting</h3>
+                    <p>Detailed analytics and visualization tools provide deep insights into fraud trends, system performance, and cost savings with customizable dashboards.</p>
+                </div>
+
+                <div class="feature-card">
+                    <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200&q=80" 
+                         alt="Machine Learning" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem;">
+                    <h3>Adaptive Learning Models</h3>
+                    <p>Machine learning models continuously evolve to detect new fraud patterns and provider behavior anomalies, staying ahead of emerging threats.</p>
+                </div>
+
+                <div class="feature-card">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200&q=80" 
+                         alt="Alert System" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem;">
+                    <h3>Instant Alert System</h3>
+                    <p>Get immediate notifications when suspicious activities are detected, enabling swift action and prevention with configurable alert thresholds.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+        <!-- Use Case Section -->
+    <section class="usecase-section" id="usecase">
+        <div class="container">
+            <div class="usecase-content">
+                <div class="usecase-text">
+                    <h3>CMS Medicare Services Integration</h3>
+                    <p>Healthcare fraud costs US payers between $68-230 billion annually, with traditional rule-based systems generating over 95% false positives. Our AI-powered solution addresses these critical challenges facing CMS Medicare Services.</p>
+                </div>
+
+                <div class="usecase-boxes">
+                    <div class="challenge-box">
+                        <h4>Current Medicare Fraud Challenges</h4>
+                        <ul style="margin-top: 1rem; padding-left: 2rem;">
+                            <li>$68-230 billion in annual fraud losses</li>
+                            <li>95%+ false positive rates with legacy systems</li>
+                            <li>Delayed detection allowing continued fraud</li>
+                            <li>Limited pattern recognition capabilities</li>
+                        </ul>
+                    </div>
+
+                    <div class="solution-box">
+                        <h4>MediGuard AI Solution</h4>
+                        <ul style="margin-top: 1rem; padding-left: 2rem;">
+                            <li>Real-time claim analysis and scoring</li>
+                            <li>Advanced pattern recognition algorithms</li>
+                            <li>Provider behavior baseline analysis</li>
+                            <li>Cross-referencing with multiple databases</li>
+                        </ul>
+                    </div>
+
+                    <div class="requirements-list">
+                        <h4>System Capabilities & Requirements</h4>
+                        <ul>
+                            <li>Integrate with existing CMS databases and workflows</li>
+                            <li>Provide comprehensive audit trails for compliance</li>
+                            <li>Support multiple authentication methods and access controls</li>
+                            <li>Generate automated reports for investigation teams</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-grid">
+                    <div class="about-text">
+                        <h3>Healthcare Technology Experts</h3>
+                        <p>Our mission is to leverage cutting-edge artificial intelligence and machine learning technologies to detect, prevent, and eliminate healthcare fraud while ensuring legitimate patients receive uninterrupted care.</p>
+
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <h4>95%</h4>
+                                <p>Detection Accuracy</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>$2.4B</h4>
+                                <p>Fraud Prevented</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>150+</h4>
+                                <p>Healthcare Partners</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>24/7</h4>
+                                <p>System Monitoring</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-features">
+                        <h3>Why Choose MediGuard AI</h3>
+                        <div class="feature-list">
+                            
+                            <div class="feature-item">
+                                <span class="feature-bullet">AI</span>
+                                <div>
+                                    <h4>Learning algorithms</h4>
+                                    <p>Advanced AI and machine learning algorithms specifically designed for healthcare fraud detection, continuously updated with latest threat patterns.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="feature-item">
+                                <span class="feature-bullet">ROI</span>
+                                <div>
+                                    <h4>Proven Results</h4>
+                                    <p>Track record of successful fraud prevention and documented cost savings, with clients reporting increased ROI average within the first year.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="feature-item">
+                                <span class="feature-bullet">SUP</span>
+                                <div>
+                                    <h4>Enterprise Support</h4>
+                                    <p>Dedicated support team and long-term partnership approach, ensuring seamless integration and ongoing optimization of fraud detection capabilities.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Our Team Section -->
+    <section class="team-section" id="team">
+        <div class="container">
+            <h2 class="section-title">Meet Our Development Team</h2>
+            <p class="team-intro">Our dedicated team of healthcare technology specialists, AI engineers, and fraud detection experts who built MediGuard AI to protect Medicare services nationwide.</p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <img src="{{ url_for('static', filename='assets/images/women.png') }}" alt="Leckhasri" class="avatar-img">
+                    </div>
+                    <div class="member-info">
+                        <h4>Leckhasri</h4>
+                        <p class="member-role">Lead & Project Manager</p>
+                        <p class="member-description">Specializes in machine learning algorithms for healthcare fraud detection. Led the development of the core AI engine with 5+ years experience in medical data analytics.</p>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <img src="{{ url_for('static', filename='assets/images/men.png') }}" alt="Nithishvaran" class="avatar-img">
+                    </div>
+                    <div class="member-info">
+                        <h4>Nithishvaran</h4>
+                        <p class="member-role">Frontend Developer & UX Designer</p>
+                        <p class="member-description">Expert in scalable backend architecture and database optimization. Designed the real-time processing engine capable of handling 1M+ claims daily.</p>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <img src="{{ url_for('static', filename='assets/images/men.png') }}" alt="Mujahid" class="avatar-img">
+                    </div>
+                    <div class="member-info">
+                        <h4>Mujahid</h4>
+                        <p class="member-role"> Senior Backend Developer</p>
+                        <p class="member-description">Creates intuitive user interfaces and responsive designs. Focused on making complex fraud detection data accessible to healthcare professionals.</p>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+/* ================= Theme (provider-style) ================= */
+:root{
+  --bg: #f5f7fb;
+  --card: rgba(255,255,255,0.8);
+  --text: #0f172a;
+  --muted: #475569;
+  --border: rgba(203,213,225,0.3);
+  --primary: #0ea5e9;
+  --primary-2: #22d3ee;
+  --shadow: 0 10px 30px rgba(2,132,199,.08);
+  --radius: 16px;
+
+  --sidebar-start: #eef7ff;
+  --sidebar-end:   #f7fbff;
+}
+[data-theme="dark"]{
+  --bg:#0f1629;
+  --card: rgba(26,35,50,0.6);
+  --text:#ffffff;
+  --muted:#8892b0;
+  --border:rgba(255,255,255,0.1);
+  --shadow:0 10px 30px rgba(0,0,0,.35);
+
+  --sidebar-start:#0f1629;
+  --sidebar-end:#1a2332;
+}
+
+/* ================= Base layout ================= */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  background:
+    radial-gradient(900px 700px at 80% 0%, rgba(34,211,238,.10), transparent 55%),
+    radial-gradient(800px 700px at 10% 90%, rgba(14,165,233,.12), transparent 50%),
+    linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  color:var(--text);
+  display:flex;
+  min-height:100vh;
+}
+[data-theme="dark"] body{
+  background:
+    radial-gradient(900px 700px at 80% 0%, rgba(34,211,238,.10), transparent 55%),
+    radial-gradient(800px 700px at 10% 90%, rgba(14,165,233,.12), transparent 50%),
+    var(--bg);
+}
+
+/* ================= Sidebar ================= */
+.sidebar{
+  width:260px;
+  background: linear-gradient(180deg, var(--sidebar-start) 0%, var(--sidebar-end) 100%);
+  border-right:1px solid var(--border);
+  padding:24px 18px;
+  display:flex; flex-direction:column;
+  position:sticky; top:0; height:100vh;
+  backdrop-filter: blur(10px);
+}
+.logo h2{
+  margin:0 0 6px 0; font-size:22px; letter-spacing:.3px;
+  background:linear-gradient(135deg,#0ea5e9 0%, #22d3ee 100%);
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+}
+.logo p{margin:0 0 20px 0; color:var(--muted); font-size:14px}
+.logo span{color:var(--primary); font-weight:600}
+
+.menu{list-style:none; padding:0; margin:8px 0 0 0}
+.menu li{margin-bottom:10px}
+.menu a{
+  display:flex; align-items:center; gap:12px; padding:14px 14px;
+  text-decoration:none; color:var(--text);
+  background:rgba(255,255,255,0.12); border-radius:14px; border:1px solid var(--border);
+  transition:.2s ease; font-weight:600;
+}
+.menu a:hover{ transform: translateY(-1px); box-shadow:var(--shadow); }
+.menu a.active{ background:linear-gradient(135deg, var(--primary) 0%, var(--primary-2) 100%); color:#fff; box-shadow:var(--shadow); }
+
+.user-info{
+  margin-top:auto; background:var(--card);
+  border:1px solid var(--border); border-radius:14px; padding:14px;
+  box-shadow:var(--shadow); display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+}
+.user-info .avatar{
+  width:40px; height:40px; border-radius:50%; display:grid; place-items:center;
+  background:linear-gradient(135deg, var(--primary) 0%, var(--primary-2) 100%); color:#fff;
+}
+.user-info p{margin:0; font-weight:600}
+.logout-btn {
+  margin-top: 10px;
+  width: 100%;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 12px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: lowercase;
+  transition: background 0.2s ease;
+}
+.logout-btn:hover {
+  background: var(--primary-2);
+}
+
+
+/* ================= Main ================= */
+.main-content{ flex:1; padding:26px 32px 40px 32px; }
+
+/* Header + theme toggle (top-right) */
+.page-header{ display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:6px; }
+/* Theme toggle button (provider style) */
+.theme-toggle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--card);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: all 0.2s ease;
+}
+
+.theme-toggle img {
+  width: 26px;
+  height: 26px;
+  display: block;
+  filter: brightness(0) invert(0); /* default dark icon */
+  transition: filter 0.2s ease;
+}
+
+[data-theme="dark"] .theme-toggle img {
+  filter: brightness(0) saturate(100%) invert(56%) sepia(97%) saturate(747%) hue-rotate(157deg) brightness(97%) contrast(101%);
+}
+
+
+/* ================= Profile Card ================= */
+.profile-section{ margin-top:12px }
+.profile-card{
+  background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+  padding:22px; box-shadow:var(--shadow); position:relative; overflow:hidden;
+}
+.profile-card::after{
+  content:""; position:absolute; right:-60px; top:-60px; width:180px; height:180px;
+  background: radial-gradient(closest-side, rgba(14,165,233,.18), transparent 70%); transform:rotate(25deg);
+}
+.profile-name{ margin:0 0 2px 0; font-size:22px; line-height:1.2; font-weight:600 }
+.profile-id{ margin:0 0 20px 0; color:var(--muted); font-weight:500 }
+
+.profile-grid{ display:grid; grid-template-columns: repeat(12, 1fr); gap:14px; }
+.profile-grid.layout{
+  grid-template-areas:
+    "age age gender gender phone phone insurance insurance address address address address"
+    "medical medical medical medical medical medical medical medical medical medical medical medical";
+}
+.profile-item{ background:#fbfdff; border:1px solid var(--border); border-radius:12px; padding:16px 18px; display:flex; flex-direction:column; justify-content:center; box-shadow:0 1px 0 var(--border); }
+[data-theme="dark"] .profile-item{ background:rgba(255,255,255,0.07); }
+.profile-item label{ font-size:12px; color:var(--muted); font-weight:600; letter-spacing:.35px; margin-bottom:4px; text-transform:uppercase; }
+.profile-item span{ font-weight:600; color:var(--text); opacity:.95 }
+.profile-item.age{grid-area:age} .profile-item.gender{grid-area:gender} .profile-item.phone{grid-area:phone}
+.profile-item.insurance{grid-area:insurance} .profile-item.address{grid-area:address; min-height:96px}
+.profile-item.medical{grid-area:medical}
+
+@media (max-width:1024px){
+  .profile-grid.layout{
+    grid-template-areas:
+      "age age gender gender phone phone insurance insurance insurance insurance insurance insurance"
+      "address address address address address address address address address address address address"
+      "medical medical medical medical medical medical medical medical medical medical medical medical";
+  }
+}
+@media (max-width:680px){
+  .profile-grid.layout{
+    grid-template-columns:1fr 1fr;
+    grid-template-areas:
+      "age gender" "phone insurance" "address address" "medical medical";
+    gap:12px;
+  }
+}
+
+/* ================= Claims ================= */
+.claims-section{
+  background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+  padding:20px; margin-top:22px; box-shadow:var(--shadow);
+}
+.claims-section h2{ margin:0 0 12px 0; font-size:20px }
+
+#claimsTable{ width:100%; border-collapse:separate; border-spacing:0 10px }
+#claimsTable thead th{
+  text-align:left; font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.4px;
+  padding:0 14px 4px 14px; border-bottom:1px dashed var(--border);
+}
+#claimsTable tbody tr{ background:#fbfdff; box-shadow:0 1px 0 var(--border), 0 -1px 0 var(--border) }
+[data-theme="dark"] #claimsTable tbody tr{ background:rgba(255,255,255,0.07) }
+#claimsTable tbody td{ padding:14px; border-top:1px solid var(--border); border-bottom:1px solid var(--border) }
+#claimsTable tbody tr:first-child td{ border-top-left-radius:12px; border-top-right-radius:12px }
+#claimsTable tbody tr:last-child td{ border-bottom-left-radius:12px; border-bottom-right-radius:12px }
+#claimsTable tbody tr:hover{ background:rgba(255,255,255,0.12) }
+
+.amount{ font-weight:700; color:var(--text) }
+
+/* status pill */
+.status{ display:inline-block; padding:6px 10px; border-radius:999px; font-size:12px; font-weight:700; border:1px solid var(--border) }
+.status.approved{ background:#ecfdf5; color:#047857; border-color:#a7f3d0 }
+.status.pending{  background:#fff7ed; color:#9a3412; border-color:#fed7aa }
+.status.denied{   background:#fef2f2; color:#991b1b; border-color:#fecaca }
+
+/* ============== Responsive sidebar on mobile ============== */
+@media (max-width: 980px){ .sidebar{width:230px} }
+@media (max-width: 860px){
+  .sidebar{
+    position:fixed; z-index:10; height:auto; inset:auto 0 auto 0; width:100%;
+    flex-direction:row; align-items:center; gap:14px; padding:14px 16px;
+    border-right:none; border-bottom:1px solid var(--border);
+  }
+  .menu{display:flex; gap:8px; margin:0}
+  .user-info{margin-top:0; margin-left:auto}
+  .main-content{padding:96px 18px 24px 18px}
+}
+
+
+

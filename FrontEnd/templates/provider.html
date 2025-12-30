@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Provider Dashboard - HealthGuard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/provider.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">HealthGuard AI</div>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <img id="theme-icon" src="/static/assets/images/sun.png" alt="Switch to Dark Mode">
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-tabs">
+                <button class="tab-btn active" data-tab="patients">
+                    <span class="tab-icon">👥</span>
+                    <span class="tab-text">Patient Management</span>
+                </button>
+                <button class="tab-btn" data-tab="claims">
+                    <span class="tab-icon">📊</span>
+                    <span class="tab-text">Claims Analysis</span>
+                </button>
+            </div>
+
+            <!-- Provider Profile Section -->
+            <div class="sidebar-profile">
+                <div class="profile-container">
+                    <div class="profile-avatar" id="providerAvatar">DR</div>
+                    <div class="profile-info">
+                        <h3 id="sidebarProviderName">Dr. Provider Name</h3>
+                        <div class="profile-email" id="providerEmail">provider@healthguard.com</div>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logoutBtn">
+                    <span class="logout-text">logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Patient Management Section -->
+            <section id="patients-section" class="tab-content active">
+                <header class="section-header">
+                    <h2>Patient Management</h2>
+                    <p>Manage patient information and associated claims</p>
+                </header>
+                <div class="patients-container" id="patientsContainer">
+                    <!-- Patient cards will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Claims Analysis Section -->
+            <section id="claims-section" class="tab-content">
+                <header class="section-header">
+                    <h2>Claims Analysis</h2>
+                    <p>Comprehensive analysis of submitted claims</p>
+                </header>
+
+                <!-- Claims Filters -->
+                <div class="claims-filters">
+                    <select id="statusFilter" class="filter-select">
+                        <option value="">All Statuses</option>
+                        <option value="approved">Approved</option>
+                        <option value="pending">Pending</option>
+                        <option value="fraud">Fraud</option>
+                    </select>
+                    <select id="serviceFilter" class="filter-select">
+                        <option value="">All Services</option>
+                        <option value="consultation">Consultation</option>
+                        <option value="surgery">Surgery</option>
+                        <option value="diagnostic">Diagnostic</option>
+                        <option value="therapy">Therapy</option>
+                    </select>
+                </div>
+
+                <!-- Claims Analysis Table -->
+                <div class="claims-analysis-section">
+                    <h3>Claims Overview</h3>
+                    <div class="table-container">
+                        <table id="claimsAnalysisTable">
+                            <thead>
+                                <tr>
+                                    <th>Claim ID</th>
+                                    <th>Patient</th>
+                                    <th>Service</th>
+                                    <th>Amount</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="claimsTableBody">
+                                <!-- Claims data will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <p>Loading data...</p>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/provider.js') }}"></script>
+</body>
+</html>
